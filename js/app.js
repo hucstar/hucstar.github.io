@@ -100,28 +100,7 @@
       Util.bind($inputSearch, 'keyup', function() {
         var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
 
-        if (this.value.trim().length <= 0) {
-          return;
-        }
-
-        var results = filterPosts(data, keywords);
-        var $listSearch = document.getElementById('list-search');
-        $listSearch.innerHTML = createInnerHTML(results);
-      });
-
-    });
-  }
-
-
-  ///////////////////
-
-  function filterPosts(data, keywords) {
-    var results = [];
-
-    data.forEach(function(item) {
-      var isMatch = false;
-      var matchKeyWords = [];
-      item.content = item.content.replace(/<[^>]*>/g, '');
+        if (this.value.trim().length <= 0)="" {="" return;="" }="" var="" results="filterPosts(data," keywords);="" $listsearch="document.getElementById('list-search');" $listsearch.innerhtml="createInnerHTML(results);" });="" function="" filterposts(data,="" keywords)="" data.foreach(function(item)="" ismatch="false;" matchkeywords="[];" item.content="item.content.replace(/<[^">]*>/g, '');
 
       keywords.forEach(function(word) {
         var reg = new RegExp(word, 'i');
@@ -153,11 +132,11 @@
       item.title = highlightText(item.title, item.matchKeyWords);
 
       item = '<li class="item">' +
-        '<a href="' + item.url + '"" target="_blank">' +
+        '<a href="' + item.url + '" "="" target="_blank">' +
         '<h3 class="title">' + item.title + '</h3>' +
         '</a>' +
-        '<p class="post-content">' + postContent + '</h3>' +
-        '</li>';
+        '<p class="post-content">' + postContent + '' +
+        '</p></li>';
       content += item;
     });
 
@@ -210,3 +189,4 @@
 
 
 }());
+</[^></=>

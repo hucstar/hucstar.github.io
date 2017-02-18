@@ -80,7 +80,7 @@
 
 
   
-    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
   
 
   <div class="content content-archive">
@@ -88,7 +88,7 @@
 
   
     <div class="breadcrumb">
-      <div class="location">博客</div>
+      <div class="location">Blog</div>
       <i class="icon-location"></i>
     </div>
   
@@ -96,7 +96,7 @@
   
   <div class="toolbox">
     <a class="toolbox-entry" href="/">
-      <span class="toolbox-entry-text">盒子</span>
+      <span class="toolbox-entry-text">导航</span>
       <i class="icon-angle-down"></i>
       <i class="icon-home"></i>
     </a>
@@ -189,11 +189,11 @@
       <img src="/images/avatar.jpg" alt="" />
     </a>
     <div class="info">
-      <h3 class="name" style="font-family: calligraffittiregular">
-        Forsigner
+      <h3 class="name" style="font-family: PoiretOne-Regular">
+        Star&#39;s Blog
       </h3>
       <div class="slogan">
-        Find the bug of the world
+        曾经沧海难为水，除却巫山不是云。
       </div>
     </div>
   </div>
@@ -210,10 +210,18 @@
     </a>
   </li>
 <li class="item-post item">
+  <span class="post-date">02-18</span>
+
+  
+  <a class="post-title" href="/2017/02/18/第一篇/">第一篇</a>
+
+
+</li>
+<li class="item-post item">
   <span class="post-date">02-11</span>
 
   
-  <a class="post-title" href="/2017/02/11/hello-world/">Hello World</a>
+  <a class="post-title" href="/2017/02/11/First/">Hello World</a>
 
 
 </li>
@@ -236,7 +244,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -359,5 +367,20 @@
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
