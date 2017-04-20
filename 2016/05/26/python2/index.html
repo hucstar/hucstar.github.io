@@ -25,15 +25,18 @@
 <meta property="og:description" content="第二章
 0x00**正确识别网站编码类型**
 上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都">
-<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image002.jpg">
-<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image020.png">
-<meta property="og:updated_time" content="2017-04-20T08:29:54.230Z">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image001.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/2%20%284%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/2%20%285%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/2%20%287%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image019.png">
+<meta property="og:updated_time" content="2017-04-20T11:37:28.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零基础入门python爬虫(二)">
 <meta name="twitter:description" content="第二章
 0x00**正确识别网站编码类型**
 上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都">
-<meta name="twitter:image" content="http://oojkvr7mp.bkt.clouddn.com/image002.jpg">
+<meta name="twitter:image" content="http://oojkvr7mp.bkt.clouddn.com/image001.jpg">
 
   
 
@@ -240,7 +243,7 @@
 
   <div class="article-content">
     
-      <p><img src="http://oojkvr7mp.bkt.clouddn.com/image002.jpg" alt="enter description here"></p>
+      <p><img src="http://oojkvr7mp.bkt.clouddn.com/image001.jpg" alt="enter description here"></p>
 <p><strong>第二章</strong></p>
 <p><strong>0x00**</strong>正确识别网站编码类型**</p>
 <p>上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都去分析吧？</p>
@@ -253,7 +256,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ef automatic_detect(url):</div><div class="line">"""doc"""</div><div class="line">content = urllib.urlopen(url).read()</div><div class="line">result = chardet.detect(content)</div><div class="line">encoding = result['encoding']</div><div class="line">return encoding</div><div class="line">然后将字符串网址赋值给url构成一个</div><div class="line">urls = ["http://www.baidu.com/",</div><div class="line">"http://www.163.com/",</div><div class="line">"http://www.youku.com/"</div><div class="line">]</div></pre></td></tr></table></figure>
 <p>接下来遍历这个参数，让每次都把url参数传入函数，打印出来。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">print url,automatic_detect(url)</div></pre></td></tr></table></figure>
-<p>![enter description here][2]</p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/2%20%284%29.jpg" alt="enter description here" title="2 &#40;4&#41;"></p>
 <p>这样呢，我们就可以批量检测网站的编码理想，图上标注的代码可以分析显示出网站编码类型可能性百分数，很可靠。Chardet不再是服务器头部信息判断编码，也不是通过检查网页源代码得到站长申明的编码，而是通过检测所有内容判断编码类型，所以可靠。</p>
 <p><strong>0x001 **</strong>网站抓取限制绕过**</p>
 <p>有的一些网站是防爬取的，那么我们想要爬取的话就需要知道它是怎样限制的。它会记录来访信息，如果发现你短时间内请求多次就会限制你的IP.是否模拟浏览器，且用户信息多种多样，又来自不同的IP进行访问呢？这样就会让受访对象以为是来自不同地方的多个用户在访问，就没有限制的理由喽？当然是可以的，你且来看，先看模拟一个浏览器访问：</p>
@@ -262,9 +265,9 @@
 <p>print html.read()</p>
 <p>print req.header_items()</p>
 <p>除了以上的代码分别加上这两条打印，就可以分别打印网页内用和头部信息。</p>
-<p>![enter description here][3]</p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/2%20%285%29.jpg" alt="enter description here" title="2 &#40;5&#41;"></p>
 <p>用户信息可以用Chorme等浏览器抓包查看：</p>
-<p>![enter description here][4]</p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/2%20%287%29.jpg" alt="enter description here" title="2 &#40;7&#41;"></p>
 <p>下面我们封装函数，捏造多个用户信息访问：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import urllib2</div><div class="line">import random</div><div class="line"></div><div class="line">url = "http://tieba.baidu.com/p/xxx"</div><div class="line"></div><div class="line">g00gle_headers = [</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0",</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89"</div><div class="line"></div><div class="line">]</div><div class="line"></div><div class="line">def get_content(url, headers):</div><div class="line"></div><div class="line">"""</div><div class="line"></div><div class="line">@获取403禁止访问</div><div class="line"></div><div class="line">"""</div><div class="line"></div><div class="line">random_header = random.choice(headers)</div><div class="line"># header参数传给函数random_choice（随机选择），然后赋值给random_header（随机header）</div><div class="line">req = urllib2.Request(url)</div><div class="line">req.add_header("User-Agent",random_header)</div><div class="line"># 添加header,用户代理</div><div class="line">req.add_header("Host","tieba.baidu.com")</div><div class="line">#  添加Host</div><div class="line">req.add_header("Refer","http://tieba.baidu.com/")</div><div class="line">#  来源</div><div class="line">req.add_header("GET",url)</div><div class="line">#  请求的地址</div><div class="line">content = urllib2.urlopen(req).read()</div><div class="line">return content</div><div class="line">print get_content(url, g00gle_headers)</div></pre></td></tr></table></figure>
 <p>笔记已做在代码的注释段，请仔细看一下。其中：</p>
@@ -275,8 +278,7 @@
 <p>本章我们针对一般情况以外的特殊情况进行了探讨。有的网站查不到编码类型怎么办，有的网站拒绝爬取信息怎么办。世上本没有路，走的人多了也便成了路。办法一定会有的，大牛眼里这些都是小儿科，欢迎来喷！下章我们爬取所需要的东西，有序下载到本地，敬请期待！</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>——————<img src="http://oojkvr7mp.bkt.clouddn.com/image020.png" alt="enter description here"></p>
-<p>  [2]: <a href="http://oojkvr7mp.bkt.clouddn.com/image003.jpg" target="_blank" rel="external">http://oojkvr7mp.bkt.clouddn.com/image003.jpg</a> “”<br>  [3]: <a href="http://oojkvr7mp.bkt.clouddn.com/image006.jpg" target="_blank" rel="external">http://oojkvr7mp.bkt.clouddn.com/image006.jpg</a> “”<br>  [4]: <a href="http://oojkvr7mp.bkt.clouddn.com/image008.jpg" target="_blank" rel="external">http://oojkvr7mp.bkt.clouddn.com/image008.jpg</a> “”</p>
+<p>——————<img src="http://oojkvr7mp.bkt.clouddn.com/image019.png" alt="enter description here"></p>
 
     
   </div>
