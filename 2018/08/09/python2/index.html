@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>零基础入门python爬虫(二) | 谷歌的黑色笔记本</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Chardet,python爬虫,编码类型," />
+  
+
+  <meta name="description" content="第二章
+0x00**正确识别网站编码类型**
+上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零基础入门python爬虫(二)">
+<meta property="og:url" content="https://www.secbook.club/2018/08/09/python2/index.html">
+<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:description" content="第二章
+0x00**正确识别网站编码类型**
+上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image001.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/2%20%284%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/2%20%285%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/2%20%287%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image019.png">
+<meta property="og:updated_time" content="2018-08-09T13:12:07.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="零基础入门python爬虫(二)">
+<meta name="twitter:description" content="第二章
+0x00**正确识别网站编码类型**
+上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都">
+<meta name="twitter:image" content="http://oojkvr7mp.bkt.clouddn.com/image001.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-python2" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">零基础入门python爬虫(二)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>g00gle</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://www.secbook.club/2018/08/09/python2/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><img src="http://oojkvr7mp.bkt.clouddn.com/image001.jpg" alt="enter description here"></p>
+<p><strong>第二章</strong></p>
+<p><strong>0x00**</strong>正确识别网站编码类型**</p>
+<p>上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都去分析吧？</p>
+<p>我们需要用到chardet这个第三方模块;</p>
+<p><a href="https://pypi.python.org/pypi/chardet" target="_blank" rel="external">https://pypi.python.org/pypi/chardet</a></p>
+<p>下载下来后安装方法也是比较简单的，在cmd中执行文件夹chardet-2.3.0下的steup.py install 即可！（你又学会了安装第三方模块！）那么接下来我们就要用到这个模块：</p>
+<p>import chardet</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 字符集检测</div><div class="line">import urllib</div></pre></td></tr></table></figure>
+<p>然后封装一个函数，先撸代码后封装函数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ef automatic_detect(url):</div><div class="line">"""doc"""</div><div class="line">content = urllib.urlopen(url).read()</div><div class="line">result = chardet.detect(content)</div><div class="line">encoding = result['encoding']</div><div class="line">return encoding</div><div class="line">然后将字符串网址赋值给url构成一个</div><div class="line">urls = ["http://www.baidu.com/",</div><div class="line">"http://www.163.com/",</div><div class="line">"http://www.youku.com/"</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>接下来遍历这个参数，让每次都把url参数传入函数，打印出来。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">print url,automatic_detect(url)</div></pre></td></tr></table></figure>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/2%20%284%29.jpg" alt="enter description here" title="2 &#40;4&#41;"></p>
+<p>这样呢，我们就可以批量检测网站的编码理想，图上标注的代码可以分析显示出网站编码类型可能性百分数，很可靠。Chardet不再是服务器头部信息判断编码，也不是通过检查网页源代码得到站长申明的编码，而是通过检测所有内容判断编码类型，所以可靠。</p>
+<p><strong>0x001 **</strong>网站抓取限制绕过**</p>
+<p>有的一些网站是防爬取的，那么我们想要爬取的话就需要知道它是怎样限制的。它会记录来访信息，如果发现你短时间内请求多次就会限制你的IP.是否模拟浏览器，且用户信息多种多样，又来自不同的IP进行访问呢？这样就会让受访对象以为是来自不同地方的多个用户在访问，就没有限制的理由喽？当然是可以的，你且来看，先看模拟一个浏览器访问：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import urllib2</div><div class="line"></div><div class="line">url = [http://tieba.baidu.com/p/xxx](http://tieba.baidu.com/p/xxx)</div><div class="line"></div><div class="line">g00gle_headers = &#123;</div><div class="line">"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",</div><div class="line">"GET":url,</div><div class="line">"Refer":"http://tieba.baidu.com/",</div><div class="line">"Host":"tieba.baidu.com"</div><div class="line">&#125;</div><div class="line">req = urllib2.Request(url,headers = g00gle_headers)</div><div class="line">req.add_header("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36")</div><div class="line">req.add_header("GET",url)</div><div class="line">req.add_header("Refer","http://tieba.baidu.com/")</div><div class="line"></div><div class="line">req.add_header("Host","tieba.baidu.com")</div><div class="line"></div><div class="line">html = urllib2.urlopen(req)</div></pre></td></tr></table></figure>
+<p>=========================================================</p>
+<p>print html.read()</p>
+<p>print req.header_items()</p>
+<p>除了以上的代码分别加上这两条打印，就可以分别打印网页内用和头部信息。</p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/2%20%285%29.jpg" alt="enter description here" title="2 &#40;5&#41;"></p>
+<p>用户信息可以用Chorme等浏览器抓包查看：</p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/2%20%287%29.jpg" alt="enter description here" title="2 &#40;7&#41;"></p>
+<p>下面我们封装函数，捏造多个用户信息访问：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"># -*- coding:utf-8 -*-</div><div class="line">import urllib2</div><div class="line">import random</div><div class="line"></div><div class="line">url = "http://tieba.baidu.com/p/xxx"</div><div class="line"></div><div class="line">g00gle_headers = [</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0",</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",</div><div class="line"></div><div class="line">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89"</div><div class="line"></div><div class="line">]</div><div class="line"></div><div class="line">def get_content(url, headers):</div><div class="line"></div><div class="line">"""</div><div class="line"></div><div class="line">@获取403禁止访问</div><div class="line"></div><div class="line">"""</div><div class="line"></div><div class="line">random_header = random.choice(headers)</div><div class="line"># header参数传给函数random_choice（随机选择），然后赋值给random_header（随机header）</div><div class="line">req = urllib2.Request(url)</div><div class="line">req.add_header("User-Agent",random_header)</div><div class="line"># 添加header,用户代理</div><div class="line">req.add_header("Host","tieba.baidu.com")</div><div class="line">#  添加Host</div><div class="line">req.add_header("Refer","http://tieba.baidu.com/")</div><div class="line">#  来源</div><div class="line">req.add_header("GET",url)</div><div class="line">#  请求的地址</div><div class="line">content = urllib2.urlopen(req).read()</div><div class="line">return content</div><div class="line">print get_content(url, g00gle_headers)</div></pre></td></tr></table></figure>
+<p>笔记已做在代码的注释段，请仔细看一下。其中：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">g00gle_headers = [</div><div class="line"></div><div class="line"><span class="string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"</span>,</div><div class="line"></div><div class="line"><span class="string">"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0"</span>,</div><div class="line"></div><div class="line"><span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1"</span>,</div><div class="line"></div><div class="line"><span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89"</span></div><div class="line"></div><div class="line">]</div></pre></td></tr></table></figure>
+<p>就是捏造的多个用户信息，变量名可以随便取的，不建议我这么非主流，还是有套路一点比较好。这样就可以突破网站的抓取限制了。这还是没有设置代理IP的，感兴趣的同学可以继续深倔！</p>
+<p>&nbsp;</p>
+<p><strong>0x003 **</strong>本章小结**</p>
+<p>本章我们针对一般情况以外的特殊情况进行了探讨。有的网站查不到编码类型怎么办，有的网站拒绝爬取信息怎么办。世上本没有路，走的人多了也便成了路。办法一定会有的，大牛眼里这些都是小儿科，欢迎来喷！下章我们爬取所需要的东西，有序下载到本地，敬请期待！</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>——————<img src="http://oojkvr7mp.bkt.clouddn.com/image019.png" alt="enter description here"></p>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/09/python3/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/08/09/python1/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://www.secbook.club/2018/08/09/python2/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

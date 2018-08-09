@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>零基础入门python爬虫（三） | 谷歌的黑色笔记本</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="BeautifulSoup,easy_inall,pip,python爬虫," />
+  
+
+  <meta name="description" content="第三章
+0x00 **闲言少叙**
+通过前两章相信原来小白的你现在已经赶上了我，原来菜鸟的你已经甩我几条街，原来大牛的你已经被我拉低了智商。第三章做一个实际的事情，等于是一次爬虫实战。我们抓取一下百度某贴吧的图片玩玩！你会说右键另存为就挺好，我这人这不懒嘛！你又说保存整个网页就好啦，那样怎么能让一个有洁癖的厨子满意呢？大大小小的图乱做一团，想要的不想要的都在，恶心坏了。那你想怎样？爬虫吧！
+0x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零基础入门python爬虫（三）">
+<meta property="og:url" content="https://www.secbook.club/2018/08/09/python3/index.html">
+<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:description" content="第三章
+0x00 **闲言少叙**
+通过前两章相信原来小白的你现在已经赶上了我，原来菜鸟的你已经甩我几条街，原来大牛的你已经被我拉低了智商。第三章做一个实际的事情，等于是一次爬虫实战。我们抓取一下百度某贴吧的图片玩玩！你会说右键另存为就挺好，我这人这不懒嘛！你又说保存整个网页就好啦，那样怎么能让一个有洁癖的厨子满意呢？大大小小的图乱做一团，想要的不想要的都在，恶心坏了。那你想怎样？爬虫吧！
+0x">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image001.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%282%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%283%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%284%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%285%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%286%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%287%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%288%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%289%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%2810%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/30%20%2811%29.jpg">
+<meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/image020.png">
+<meta property="og:updated_time" content="2018-08-09T13:12:12.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="零基础入门python爬虫（三）">
+<meta name="twitter:description" content="第三章
+0x00 **闲言少叙**
+通过前两章相信原来小白的你现在已经赶上了我，原来菜鸟的你已经甩我几条街，原来大牛的你已经被我拉低了智商。第三章做一个实际的事情，等于是一次爬虫实战。我们抓取一下百度某贴吧的图片玩玩！你会说右键另存为就挺好，我这人这不懒嘛！你又说保存整个网页就好啦，那样怎么能让一个有洁癖的厨子满意呢？大大小小的图乱做一团，想要的不想要的都在，恶心坏了。那你想怎样？爬虫吧！
+0x">
+<meta name="twitter:image" content="http://oojkvr7mp.bkt.clouddn.com/image001.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-python3" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">零基础入门python爬虫（三）</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>g00gle</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://www.secbook.club/2018/08/09/python3/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><img src="http://oojkvr7mp.bkt.clouddn.com/image001.jpg" alt="enter description here"></p>
+<p><strong>第三章</strong></p>
+<p><strong>0x00 **</strong>闲言少叙**</p>
+<p>通过前两章相信原来小白的你现在已经赶上了我，原来菜鸟的你已经甩我几条街，原来大牛的你已经被我拉低了智商。第三章做一个实际的事情，等于是一次爬虫实战。我们抓取一下百度某贴吧的图片玩玩！你会说右键另存为就挺好，我这人这不懒嘛！你又说保存整个网页就好啦，那样怎么能让一个有洁癖的厨子满意呢？大大小小的图乱做一团，想要的不想要的都在，恶心坏了。那你想怎样？爬虫吧！</p>
+<p><strong>0x001**</strong>百度贴吧下载图片方法一**<br>思路：找你想下载图片的共同特张，下载这些有特征的图片不就得了嘛！<br>用到正则表达式，用re这个标准模块。<br>先用同上两章方法得到网页内容，再限制特征。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"># -*- confing:utf-8 -*-</div><div class="line">import urllib</div><div class="line">import re</div><div class="line">&amp;nbsp;</div><div class="line">def get_content(url):</div><div class="line">"""doc."""</div><div class="line">html = urllib.urlopen(url)</div><div class="line">content = html.read()</div><div class="line">html.close()</div><div class="line">return content</div><div class="line">def get_images(info):</div><div class="line">"""doc.</div><div class="line">&amp;lt;img class="BDE_Image"</div><div class="line">src="http://imgsrc.baidu.com/forum/w%3D580/sign=69b173e21a950a7b75354ecc3ad3625c/4fff8c1001e939010486a5ea7cec54e737d19607.jpg" size="59454" width="421"</div><div class="line">height="750" size="59454"&amp;gt;</div><div class="line">"""</div><div class="line">regex = r'class="DBE_Image" src="(.+?\.jpg)"'</div><div class="line">pat = re.compile(regex)</div><div class="line">images_code = re.findall(pat, info)</div><div class="line">i = 0</div><div class="line">for image_url in images_code:</div><div class="line">print image_url</div><div class="line">urllib.urlretrieve(image_url, '%s.jpg' % i)</div><div class="line">i += 1</div><div class="line">print images_code</div><div class="line">info = get_content("http://tieba.baidu.com/p/xxx")</div><div class="line">print get_images(info)</div></pre></td></tr></table></figure>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%282%29.jpg" alt="enter description here" title="30 &#40;2&#41;"></p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%283%29.jpg" alt="enter description here" title="30 &#40;3&#41;"></p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%284%29.jpg" alt="enter description here" title="30 &#40;4&#41;"></p>
+<p>正则表达式的编写是这一节的重点和难点，笔记在图中，请仔细看一下。</p>
+<p>妹子的照片已经一排排码好放在文件夹里了。</p>
+<p><strong>0x002**</strong>百度贴吧下载图片方法二**</p>
+<p>接下来是爬虫神之利器的上场，它就是——美丽的心灵老鸡汤（BeautifulSoup）</p>
+<p>官方文档地址：</p>
+<p><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="external">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a></p>
+<p>安装方法和初体验：</p>
+<p><a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">http://cuiqingcai.com/1319.html</a></p>
+<p><a href="http://jingyan.baidu.com/article/afd8f4de6197c834e386e96b.html" target="_blank" rel="external">http://jingyan.baidu.com/article/afd8f4de6197c834e386e96b.html</a></p>
+<p>绝对是挑讲的好的教程链接才放上来，借这个机会索性我把pip,easy_inall和1xml一通安装完了，安装方法简单介绍下，网上太多文章。</p>
+<p>安装过程：<br><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%285%29.jpg" alt="enter description here" title="30 &#40;5&#41;"></p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%286%29.jpg" alt="enter description here" title="30 &#40;6&#41;"></p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%287%29.jpg" alt="enter description here" title="30 &#40;7&#41;"></p>
+<p>执行上图这一条检测，不报错说明安装成功。</p>
+<p>然后我们编写爬虫代码：</p>
+<p>导入from bs4 import BeautifulSoup</p>
+<p>注意：要是BeautifulSoup的版本为3.x，则导入方式为：from BeautifulSoup import BeautifulSoup</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"># -*- confing:utf-8 -*-</div><div class="line">import urllib</div><div class="line">from bs4 import BeautifulSoup</div><div class="line"># BeautifulSoup</div><div class="line">def get_content(url):</div><div class="line"></div><div class="line">"""doc."""</div><div class="line"></div><div class="line">html = urllib.urlopen(url)</div><div class="line">content = html.read()</div><div class="line">html.close()</div><div class="line">return content</div><div class="line">def get_images(info):</div><div class="line"></div><div class="line">"""doc.</div><div class="line">&amp;lt;img class="BDE_Image"</div><div class="line">src="http://imgsrc.baidu.com/forum/w%3D580/sign=69b173e21a950a7b75354ecc3ad3625c/4fff8c1001e939010486a5ea7cec54e737d19607.jpg" size="59454" width="421"</div><div class="line">height="750" size="59454"&amp;gt;</div><div class="line">"""</div><div class="line">soup = BeautifulSoup(info)</div><div class="line">all_img = soup.find_all('img',class_="BDE_Image")</div><div class="line">x = 1</div><div class="line">for img in all_img:</div><div class="line">print img</div><div class="line">image_name = '%s.jpg' % x</div><div class="line">urllib.urlretrieve(img['src'], image_name)</div><div class="line">x += 1</div><div class="line">print type(img)</div><div class="line">info = get_content("http://tieba.baidu.com/p/xxx")</div><div class="line">print get_images(info)</div></pre></td></tr></table></figure>
+<p>图解一下部分重要代码的意义：</p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%288%29.jpg" alt="enter description here" title="30 &#40;8&#41;"></p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%289%29.jpg" alt="enter description here" title="30 &#40;9&#41;"></p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%2810%29.jpg" alt="enter description here" title="30 &#40;10&#41;"></p>
+<p><img src="http://oojkvr7mp.bkt.clouddn.com/30%20%2811%29.jpg" alt="enter description here" title="30 &#40;11&#41;"></p>
+<p>参考文章：</p>
+<p><a href="http://my.oschina.net/u/1432929/blog/189660?p=1" target="_blank" rel="external">http://my.oschina.net/u/1432929/blog/189660?p=1</a></p>
+<p>绝对是挑好的放上来。</p>
+<p><strong>0x003 **</strong>你发现换了一个帖子**</p>
+<p>对，你没有看错，对某一网页过度频繁访问百度会不高兴的，总不能老爬人家妹子，我们找一个“表情帝”的帖子用第二种方法爬了一下，为节省时间故意选了一个只有两张图的帖。没有用正则表达式，这样看起来更好懂，更专业一些。1xml也是爬虫利器，有兴趣的同学继续深究。</p>
+<p><strong>0x004 **</strong>本章小结**</p>
+<p>本章我们交流到两种抓取百度贴吧图片并有序下载到本地的方法，第二种加载第三方模块BeautifulSoup值得推崇。其实如果你是0基础的话到这个时候就应该可以看懂一些博客里的教程代码它们是在做什么，这是你学习的开始，也是你学习的最佳途径，不懂什么找什么。祝大家学习进步，工作快乐。</p>
+<hr>
+<p><strong>后记：</strong></p>
+<p>到今天为止呢“0基础入门python爬虫”三部曲文章就告一段落了。相信如果你是真的认真读过文章，按着各个思路操作过不管你是新手还是老手都一定会有收获的，当然老手的收获更多是看到不合理的代码和方法找到更合理的办法，这何尝不是一种收获呢？或是看到这篇烂文多了槽点，你的批评对我来说是最好的指点。</p>
+<p>写到这里据截稿日期已经近在咫尺，其实是很忙的，为什么我愿意花大量的时间做这样的事情？除了自己不可抗拒的喜欢外更多的是感动的，一定要记住，装个逼就了事的人绝对不是高手。即使他现在比你强，总有一天你会赶超他。大家都有自己的事，为什么人家愿意收集收集好的资料每天都发出来，看一篇文章十分钟，写一篇文章多久？所以一定要协助他们挺起来。</p>
+<p>文章一定会有后续，下次想写一个接口MD5解密网站的小公举，实现多个网站批量解密，已经有这样现成的工具，正在剖析它的原理。其实，爬虫之路才刚刚开始。</p>
+<p>文近尾声我的心底回荡着的满是圣贤书里的一句话：合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下……</p>
+<hr>
+<hr>
+<hr>
+<p><strong>推荐阅读：</strong></p>
+<p><a href="http://python.jobbole.com/81359/" target="_blank" rel="external">http://python.jobbole.com/81359/</a></p>
+<p><a href="http://www.liaoxuefeng.com/" target="_blank" rel="external">http://www.liaoxuefeng.com/</a></p>
+<p><a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">http://cuiqingcai.com/1319.html</a></p>
+<p><a href="http://my.oschina.net/u/1432929/blog/189660?p=1" target="_blank" rel="external">http://my.oschina.net/u/1432929/blog/189660?p=1</a></p>
+<p><a href="http://blog.sina.com.cn/s/blog_ba1bed340101k8cj.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_ba1bed340101k8cj.html</a></p>
+<p>————<img src="http://oojkvr7mp.bkt.clouddn.com/image020.png" alt="enter description here"></p>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/09/[神器]中国菜刀/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/08/09/python2/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://www.secbook.club/2018/08/09/python3/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
