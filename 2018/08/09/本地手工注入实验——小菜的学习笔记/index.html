@@ -400,7 +400,7 @@ echo $querry;}?&gt;
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -509,8 +509,8 @@ echo $querry;}?&gt;
     <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
     <div id="comment" class="vcomment" ></div>
     <script>
-        var notify = 'false' == true ? true : false;
-        var verify = 'false' == true ? true : false;
+        var notify = 'true' == true ? true : false;
+        var verify = 'true' == true ? true : false;
         var GUEST_INFO = ['nick','mail','link'];
         var guest_info = 'nick,mail,link'.split(',').filter(function(item){
             return GUEST_INFO.indexOf(item) > -1
@@ -520,8 +520,8 @@ echo $querry;}?&gt;
             el: '.vcomment',
             notify: notify,
             verify: verify,
-            appId: "null",
-            appKey: "null",
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
             avatar:'mm',
             placeholder: "Just go go",
             guest_info:guest_info,
