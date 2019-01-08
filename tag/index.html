@@ -103,7 +103,7 @@ ga('send', 'pageview');
 
   
     <div class="breadcrumb">
-      <div class="location">标签</div>
+      <div class="location">Tags</div>
       <i class="icon-location"></i>
     </div>
   
@@ -216,7 +216,7 @@ ga('send', 'pageview');
 </div>
 
   <section class="tag-box">
-  <div class="tag-title">标签</div>
+  <div class="tag-title">Tags</div>
   <div class="tag-list">
     
       <a class="tag-item" href="#BeautifulSoup">
@@ -231,6 +231,11 @@ ga('send', 'pageview');
     
       <a class="tag-item" href="#burp,解析漏洞,图片木马制作">
         <span class="tag-name">burp,解析漏洞,图片木马制作</span>
+        <span class="tag-size">( 1 )</span>
+      </a>
+    
+      <a class="tag-item" href="#composer,IT,proc_open">
+        <span class="tag-name">composer,IT,proc_open</span>
         <span class="tag-size">( 1 )</span>
       </a>
     
@@ -331,7 +336,25 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="easy_inall" class="item-category-name item-title item-title-3">
+<li id="composer,IT,proc_open" class="item-category-name item-title item-title-3">
+  <!--
+    <a href="" class="text-year">
+   -->
+    composer,IT,proc_open
+    <span class="category-count">( 1 )</span>
+  <!--
+  </a>
+   -->
+</li>
+<li class="item-post item">
+  <span class="post-date">01-08</span>
+
+  
+  <a class="post-title" href="/2019/01/08/composer报错笔记/">composer报错笔记</a>
+
+
+</li>
+<li id="easy_inall" class="item-category-name item-title item-title-4">
   <!--
     <a href="" class="text-year">
    -->
@@ -349,7 +372,7 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="pip" class="item-category-name item-title item-title-4">
+<li id="pip" class="item-category-name item-title item-title-0">
   <!--
     <a href="" class="text-year">
    -->
@@ -367,7 +390,7 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="python爬虫" class="item-category-name item-title item-title-0">
+<li id="python爬虫" class="item-category-name item-title item-title-1">
   <!--
     <a href="" class="text-year">
    -->
@@ -385,7 +408,7 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="python爬虫, python入门环境变量" class="item-category-name item-title item-title-1">
+<li id="python爬虫, python入门环境变量" class="item-category-name item-title item-title-2">
   <!--
     <a href="" class="text-year">
    -->
@@ -411,7 +434,7 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="sql,DVWA,手工注入" class="item-category-name item-title item-title-2">
+<li id="sql,DVWA,手工注入" class="item-category-name item-title item-title-3">
   <!--
     <a href="" class="text-year">
    -->
@@ -429,7 +452,7 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="中国菜刀,神器,webshell管理器" class="item-category-name item-title item-title-3">
+<li id="中国菜刀,神器,webshell管理器" class="item-category-name item-title item-title-4">
   <!--
     <a href="" class="text-year">
    -->
@@ -447,7 +470,7 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="小小说,三国,铜雀楼,赵子龙" class="item-category-name item-title item-title-4">
+<li id="小小说,三国,铜雀楼,赵子龙" class="item-category-name item-title item-title-0">
   <!--
     <a href="" class="text-year">
    -->
@@ -465,7 +488,7 @@ ga('send', 'pageview');
 
 
 </li>
-<li id="影评,芳华,冯小刚,刘峰,何小萍" class="item-category-name item-title item-title-0">
+<li id="影评,芳华,冯小刚,刘峰,何小萍" class="item-category-name item-title item-title-1">
   <!--
     <a href="" class="text-year">
    -->
@@ -500,7 +523,7 @@ ga('send', 'pageview');
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -623,5 +646,20 @@ ga('send', 'pageview');
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
