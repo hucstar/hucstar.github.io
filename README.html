@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>谷歌的黑色笔记本</title>
+  <title>Star&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -17,13 +17,13 @@
 
   <meta name="description" content="hucstar.github.ioStar’s Blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="谷歌的黑色笔记本">
+<meta property="og:title" content="Star's Blog">
 <meta property="og:url" content="https://www.g00glehk.top/README.html">
-<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:site_name" content="Star's Blog">
 <meta property="og:description" content="hucstar.github.ioStar’s Blog">
 <meta property="og:updated_time" content="2017-02-18T08:55:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谷歌的黑色笔记本">
+<meta name="twitter:title" content="Star's Blog">
 <meta name="twitter:description" content="hucstar.github.ioStar’s Blog">
 
   
@@ -182,7 +182,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
+    <strong class="toc-title">Posts List</strong>
     <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hucstar-github-io"><span class="toc-text">hucstar.github.io</span></a></li></ol>
   </div>
 
@@ -282,7 +282,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -384,6 +384,32 @@
 
     
 
+	
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+
   </div>
 
   
@@ -418,5 +444,20 @@
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

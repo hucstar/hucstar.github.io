@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>[神器]中国菜刀(20160620) | 谷歌的黑色笔记本</title>
+  <title>[神器]中国菜刀(20160620) | Star&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -19,7 +19,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="[神器]中国菜刀(20160620)">
 <meta property="og:url" content="https://www.g00glehk.top/2018/08/09/[神器]中国菜刀/index.html">
-<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:site_name" content="Star's Blog">
 <meta property="og:description" content="2016年中国菜刀官网关闭数年再度开启，站长倾情奉献全新版中国菜刀。据说合理配置参数可过一切waf,吼吼。下载地址 https://github.com/hucstar/xing后门自测，绝对官方。官网地址：www.maicaidao.com解压密码：www.maicaidao.com">
 <meta property="og:image" content="http://oojkvr7mp.bkt.clouddn.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/9e3df8dcd100baa1b52635b44210b912c8fc2eb2.jpg">
 <meta property="og:updated_time" content="2018-08-09T12:10:00.146Z">
@@ -184,7 +184,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
+    <strong class="toc-title">Posts List</strong>
     <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#2016年中国菜刀官网关闭数年再度开启，站长倾情奉献全新版中国菜刀。"><span class="toc-text">2016年中国菜刀官网关闭数年再度开启，站长倾情奉献全新版中国菜刀。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#据说合理配置参数可过一切waf-吼吼。"><span class="toc-text">据说合理配置参数可过一切waf,吼吼。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载地址-https-github-com-hucstar-xing"><span class="toc-text">下载地址 https://github.com/hucstar/xing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后门自测，绝对官方。"><span class="toc-text">后门自测，绝对官方。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#官网地址：www-maicaidao-com"><span class="toc-text">官网地址：www.maicaidao.com</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解压密码：www-maicaidao-com"><span class="toc-text">解压密码：www.maicaidao.com</span></a></li></ol>
   </div>
 
@@ -259,10 +259,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/08/09/burp使用简介+初谈解析漏洞(结合实战)+图片木马制作/">
+    <a class="show pull-left" href="/2018/08/09/零基础入门python爬虫(一)/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/08/09/python3/">
+    <a class="show pull-right" href="/2018/08/09/burp使用简介+初谈解析漏洞(结合实战)+图片木马制作/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -284,7 +284,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -386,6 +386,32 @@
 
     
 
+	
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+
   </div>
 
   
@@ -420,5 +446,20 @@
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

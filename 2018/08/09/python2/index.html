@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>零基础入门python爬虫(二) | 谷歌的黑色笔记本</title>
+  <title>零基础入门python爬虫(二) | Star&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -21,7 +21,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="零基础入门python爬虫(二)">
 <meta property="og:url" content="https://www.g00glehk.top/2018/08/09/python2/index.html">
-<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:site_name" content="Star's Blog">
 <meta property="og:description" content="第二章
 0x00**正确识别网站编码类型**
 上一章中我们说urllib模块下的info()方法获取网页的Header信息，但是有的一些中小型网站和个别大型网站是不能够很好的获得的。这是因为有时建站者用的是别人的网站源码，网页的编码和头部信息声明的编码不统一，也有的是旁站和主站编码类型不一致，总之很多原因吧。那么我们怎样才能合理的得出一个网站的编码类型呢？总不能它的分站，每个页面都去查看源代码都">
@@ -329,7 +329,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -431,6 +431,32 @@
 
     
 
+	
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+
   </div>
 
   
@@ -465,5 +491,20 @@
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

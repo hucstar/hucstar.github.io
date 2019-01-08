@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>终于轮到我影评《芳华》了 | 谷歌的黑色笔记本</title>
+  <title>终于轮到我影评《芳华》了 | Star&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="终于轮到我影评《芳华》了">
 <meta property="og:url" content="https://www.g00glehk.top/2018/08/09/终于轮到我影评《芳华》了/index.html">
-<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:site_name" content="Star's Blog">
 <meta property="og:description" content="前言
  &amp;emsp;&amp;emsp;冯导的《芳华》都快下映了吧，其实看完后就有一大堆东西想写，磨磨唧唧拖到现在，还以为又要得过且过了，可终究还是没能控制住心魔，因为感觉这部片子太好，值得收住浮夸的心好好记录一下自己的观影感受。这是继冯小刚《老炮》担任主演和《我不是潘金莲》担任导演后他又一部执导的口碑、票房双收益的影片。有人说冯导迎来了他的第二个春天，也确实是很贴切的形容。是啊，真的很少有人能在一生当中">
 <meta property="og:image" content="https://ws1.sinaimg.cn/mw690/640f21b1ly1fnn3wb9macj21jt2blu0x.jpg">
@@ -309,7 +309,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -411,6 +411,32 @@
 
     
 
+	
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+
   </div>
 
   
@@ -445,5 +471,20 @@
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

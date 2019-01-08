@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>以前写的小故事 | 谷歌的黑色笔记本</title>
+  <title>以前写的小故事 | Star&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -21,7 +21,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="以前写的小故事">
 <meta property="og:url" content="https://www.g00glehk.top/2018/08/09/一千年以前的故事/index.html">
-<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:site_name" content="Star's Blog">
 <meta property="og:description" content="还真有人信穿越啊？那…我就把实话告诉你，听上去像一个扑朔迷离、胡言乱语的小故事：
 
 那世……我是刘备的帐前吏，而你……是被曹操收集到铜雀楼里的丫鬟。铜雀台的建造曹操格外重视。曹操在击败袁氏兄弟后，夜宿邺城，半夜梦见一道金光从地里射出。于是醒来后派人挖掘，结果发现有一只铜雀。谋士荀攸说，历史上的五帝之一的舜，舜的母亲梦见一只玉雀钻入了她的怀里，后来就生了舜。如今得到铜雀，应该是吉祥的征兆。曹操听后">
@@ -315,7 +315,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -417,6 +417,32 @@
 
     
 
+	
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+
   </div>
 
   
@@ -451,5 +477,20 @@
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

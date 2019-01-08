@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>本地手工注入实验——小菜的学习笔记 | 谷歌的黑色笔记本</title>
+  <title>本地手工注入实验——小菜的学习笔记 | Star&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -19,7 +19,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="本地手工注入实验——小菜的学习笔记">
 <meta property="og:url" content="https://www.g00glehk.top/2018/08/09/本地手工注入实验——小菜的学习笔记/index.html">
-<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:site_name" content="Star's Blog">
 <meta property="og:description" content="0x00 写在前面   其实每一次写文，我都渴望用最简单，最朴实的语言来介绍自己的文章，虽然在众多人眼里看来这是极不专业甚至是会被嗤之以鼻的做法，可是我本身就不是专业的，何必强求自己。能力有限，也许在大神看来这样完全没有必要，我只是觉得交流文一定是让不同水平的人都能够明白自己在做什么，才是最好的。所以我努力朝这方面去做。   其实，我也不知道我们这样的小圈子可以玩多久。我和表哥说，我很忙，或许明天">
 <meta property="og:image" content="http://www.z4a.net/images/2016/12/10/436f40892545c43a919f4521ff9baaed.jpg">
 <meta property="og:image" content="http://www.z4a.net/images/2016/12/10/a671ed001f95b58a51a1b7b68752be09.jpg">
@@ -384,7 +384,7 @@ echo $querry;}?&gt;
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -486,6 +486,32 @@ echo $querry;}?&gt;
 
     
 
+	
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+
   </div>
 
   
@@ -520,5 +546,20 @@ echo $querry;}?&gt;
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

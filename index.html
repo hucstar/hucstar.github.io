@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>谷歌的黑色笔记本</title>
+  <title>Star&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -17,12 +17,12 @@
 
   <meta name="description" content="热爱技术的人天性渴望被关注">
 <meta property="og:type" content="website">
-<meta property="og:title" content="谷歌的黑色笔记本">
+<meta property="og:title" content="Star's Blog">
 <meta property="og:url" content="https://www.g00glehk.top/index.html">
-<meta property="og:site_name" content="谷歌的黑色笔记本">
+<meta property="og:site_name" content="Star's Blog">
 <meta property="og:description" content="热爱技术的人天性渴望被关注">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谷歌的黑色笔记本">
+<meta name="twitter:title" content="Star's Blog">
 <meta name="twitter:description" content="热爱技术的人天性渴望被关注">
 
   
@@ -147,7 +147,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -270,5 +270,20 @@
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
