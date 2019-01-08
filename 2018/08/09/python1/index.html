@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>零基础入门python爬虫(一) | Star&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="python爬虫, python入门环境变量," />
+  
+
+  <meta name="description" content="写在前面：
+接到5月25日之前要交稿的任务我就一门心思想写一篇爬虫入门的文章，可是我并不会。还好有将近一个月的时间去学习，于是我每天钻在书和视频教程里。其实并不难的，我只是想做到能够很好的理解它并用自己的语言较好的表达出来，也许你将看到的是史上最不专业的技术交流文章，没错这就是我想要的。我力求能让没有编程基础同我一样爱黑客技术却苦于看不到出路的同学们在24小时之内明白爬虫是怎么一回事。我想这才是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零基础入门python爬虫(一)">
+<meta property="og:url" content="https://www.g00glehk.top/2018/08/09/python1/index.html">
+<meta property="og:site_name" content="Star's Blog">
+<meta property="og:description" content="写在前面：
+接到5月25日之前要交稿的任务我就一门心思想写一篇爬虫入门的文章，可是我并不会。还好有将近一个月的时间去学习，于是我每天钻在书和视频教程里。其实并不难的，我只是想做到能够很好的理解它并用自己的语言较好的表达出来，也许你将看到的是史上最不专业的技术交流文章，没错这就是我想要的。我力求能让没有编程基础同我一样爱黑客技术却苦于看不到出路的同学们在24小时之内明白爬虫是怎么一回事。我想这才是">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6obrpj20x30imtjo.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw7aeotg20c806khdu.gif">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw72j8sj20yv0nkgog.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6k0pmj21f30haacw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6k59hj20kk0b4406.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6jlwhj20q40icgm4.jpg">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/master/小书匠/1546947851941.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6lpglj20kz0pcjsw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzezww7h1j204r02zaa3.jpg">
+<meta property="og:updated_time" content="2019-01-08T11:46:37.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="零基础入门python爬虫(一)">
+<meta name="twitter:description" content="写在前面：
+接到5月25日之前要交稿的任务我就一门心思想写一篇爬虫入门的文章，可是我并不会。还好有将近一个月的时间去学习，于是我每天钻在书和视频教程里。其实并不难的，我只是想做到能够很好的理解它并用自己的语言较好的表达出来，也许你将看到的是史上最不专业的技术交流文章，没错这就是我想要的。我力求能让没有编程基础同我一样爱黑客技术却苦于看不到出路的同学们在24小时之内明白爬虫是怎么一回事。我想这才是">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6obrpj20x30imtjo.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-python1" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">零基础入门python爬虫(一)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>g00gle</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6obrpj20x30imtjo.jpg" alt="enter description here"></p>
+<p><strong>写在前面</strong>：</p>
+<p>接到5月25日之前要交稿的任务我就一门心思想写一篇爬虫入门的文章，可是我并不会。还好有将近一个月的时间去学习，于是我每天钻在书和视频教程里。其实并不难的，我只是想做到能够很好的理解它并用自己的语言较好的表达出来，也许你将看到的是史上最不专业的技术交流文章，没错这就是我想要的。我力求能让没有编程基础同我一样爱黑客技术却苦于看不到出路的同学们在24小时之内明白爬虫是怎么一回事。我想这才是我加入中国红客联盟太极实验室在红客精神的号召下做的有意义的事。学习技术一定要学会付出、开源、共享、互助，很多大牛似乎不愿意这么做了，我们入门小菜鸟只要够团结，乐于奉献就一定可以达到1+1&gt;2的双赢效果。总之共同努力吧！</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>第一章</strong></p>
+<p><strong>0x00 python**</strong>的认识、安装**</p>
+<p>官面上的话自行去百度，这里我只介绍我所掌握到的、最重要的信息。</p>
+<p>特点：</p>
+<p>（1）跨平台开发</p>
+<p>（2）以语法简洁清晰著称</p>
+<p>（3）缩进控制严格</p>
+<p>至于说爬虫需不需要编程基础，不用多说，君不见本屌在这个月之前的n多个月里是多么苦苦的啃教程，对么下三赖的求指点。其实自学的进步速度太慢了，此文也希望看到的码阔多多提点！</p>
+<p>更多信息：</p>
+<p><a href="http://baike.baidu.com/link?url=6r5sWUy3MedUNgSES1YC02z2jEdFL8ZDYe5MXT8ik1ffzpeSOjKkLV7Ot__K-uTOciyZ83vNFp3ikt7tAgsBEa" target="_blank" rel="external">http://baike.baidu.com/link?url=6r5sWUy3MedUNgSES1YC02z2jEdFL8ZDYe5MXT8ik1ffzpeSOjKkLV7Ot__K-uTOciyZ83vNFp3ikt7tAgsBEa</a></p>
+<p>安装也是极易的，只是有python2.7和python3需要纠结选一下。菜菜也不多做建议了，各有所长，python是任性的，不顾及老用户感受强行不兼容更代，足以见得其魄力和自信。2.7的用户较多一点，初学者想用大神的exp不得已会选择它，3的用户逐日增加，人家既然更代自然有好的原因。不必担心，到最后基本上差异在哪里都会知道的。</p>
+<p>Python官网：</p>
+<p><a href="https://www.python.org/" target="_blank" rel="external">https://www.python.org/</a></p>
+<p>还是那句话，官面上可以查到的就不多聊，交流文章多写作者的看法，意见不统一的喷过来就是。很多教程会建议一开始的时候用python自带的IDLE写代码，简洁没有代码补全提示，适合初学者！我差点就信了！你会觉得怎么打都有一种好TM业余的感觉有没有？我的观点是：不是武功练到什么程度用什么剑，而是有适合自己的绝世好剑就绝对不用绝世第二剑。所以用了一段时间的IDLE我就决定换一款炫酷的编译器，于是我选择了Atom(这个时候有一个认识上的错误。)然后一个字都没写就安装activate-power-mode插件，开始震屏，冒泡，好不炫酷。</p>
+<p><img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw7aeotg20c806khdu.gif" alt="enter description here"></p>
+<p>&nbsp;</p>
+<p>安装好了python，有了编译器，我们开始编程了，打开编译器输入</p>
+<p>print (“Hello Word”),保存文件名为1.py，就把它保存在桌面上。然后cmd</p>
+<p>cd /d C:\Users\Administrator\Desktop</p>
+<p>python 1.py</p>
+<p>如果打印：Hello word,那么恭喜你，你学会编程了！（我的天！）如果打印失败，那么你和兄弟我起初时犯了一样的错误：没有设置环境变量。</p>
+<p><img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw72j8sj20yv0nkgog.jpg" alt="设置环境变量"></p>
+<p>这张图应该可以说明问题了，我的电脑&gt;属性&gt;高级系统设置&gt;环境变量&gt;pach&gt;最后面加;G:\python27(根据自己安装路径来改)。</p>
+<p>这回就可以打印了，好吧你也学会编程了！（我天哪！）</p>
+<p>&nbsp;</p>
+<p><strong>0x001 **</strong>将网页下载到本地**</p>
+<p>我们要用到python的标准模块urllib,具体下面的多种方法可以dir打开查看的，代码如下，供您消遣。大多数同学都会觉得太小儿科的，不太懂得不必细究，只需知道用这么个模块，这么个方法可以干这么个事情！</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># -*-coding:utf-8 -*-</div><div class="line"></div><div class="line"># 首先进行编码申明</div><div class="line"></div><div class="line">import urllib</div><div class="line"></div><div class="line"># 导入urllib模块</div><div class="line"></div><div class="line">url = "http://www.xxoo.com/"</div><div class="line"></div><div class="line"># 变量赋值</div><div class="line"></div><div class="line">urllib.urlretrieve(url, "C:\\Users\\用户名\\Desktop\\g00gle.txt")</div><div class="line"></div><div class="line"># urlretrieve方法下载到本地</div></pre></td></tr></table></figure>
+<p>这样就将网页下载到本地了</p>
+<p><img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6k0pmj21f30haacw.jpg" alt="enter description here"></p>
+<p><img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6k59hj20kk0b4406.jpg" alt="enter description here"></p>
+<p><strong>0x002 **</strong>判断网页是否可以抓取以及抓取进度**</p>
+<p>思路是这样的：我们针对一个网页首先要看它是否可以爬取，如果可以我们抓取他的什么？抓取它的内容、头部信息、状态码、传入网址等，代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># -*-coding:utf-8 -*-</div><div class="line">import urllib</div><div class="line">url = "http://www.163.com/"</div><div class="line">html = urllib.urlopen(url)</div><div class="line"># content = html.read().decode('gbk','ignore').encode(''utf-8)</div><div class="line"># print(content)</div><div class="line">code = html.getcode()</div><div class="line"># 网页状态码，变量code是一个整形</div><div class="line"></div><div class="line">if code == 200:</div><div class="line">print html.read()</div><div class="line">print html.info()</div><div class="line"></div><div class="line">else:</div><div class="line">print "不明飞行物."</div><div class="line"># if判断语句判断网页返回是否正常，如果正常返回他的内容、头部信息、状态码、传入网址等</div></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6jlwhj20q40icgm4.jpg" alt="enter description here"></p>
+<p>这里，urllib中用的的方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># urlopen()</div><div class="line">#获取类文件对象</div><div class="line"># read()</div><div class="line">#读取文件内容</div><div class="line"># infor</div><div class="line"># 获取头部信息Header</div><div class="line">#Getcode</div><div class="line">#获取网页状态码</div><div class="line">#geturl</div><div class="line">#传入网址</div></pre></td></tr></table></figure>
+<p>举一个例子：</p>
+<p><img src="https://www.github.com/hucstar/img/raw/master/小书匠/1546947851941.jpg" alt="enter description here"></p>
+<p>这是某站的Header、Sever、Content-Type、Last-Modified</p>
+<p>用上面代码抓取打印的结果：</p>
+<p><img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzdw6lpglj20kz0pcjsw.jpg" alt="enter description here"></p>
+<p>然后我们用回调函数的方法写一段有读取进度的抓取网页的代码。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># -*-coding:utf-8 -*-</div><div class="line">import urllib</div><div class="line">def callback(a,b,c):</div><div class="line"># 回调函数</div><div class="line"># @a:xxx</div><div class="line"># @b:xxx</div><div class="line"># @c:xxx</div><div class="line">down_program = 100.0 * a * b / c</div><div class="line">if down_program &amp;gt;100:</div><div class="line">down_program =100</div><div class="line">print "%.1f%%"% down_program</div><div class="line"># 字符串拼接%.4f让输出小数点后1位</div><div class="line">print "&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;100%"</div><div class="line">url = "http://tieba.baidu.com/"</div><div class="line">local = "C:\\Users\\Joe\\Desktop\\papa2.html"</div><div class="line">urllib.urlretrieve(url,local,callback)</div><div class="line"># 调用了上面封装的callback函数</div></pre></td></tr></table></figure>
+<p>技术有限，本来想让它</p>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;100%这样读取的，懒得弄了，没再深究。</p>
+<p>&nbsp;</p>
+<p><strong>0x003 **</strong>你发现换了编译器**</p>
+<p>对的，至于是为什么呢？因为到后来我才明白编译器、文本编译器、IDE之间的区别，真是愚笨！我是这样理解的，就像大保健一样，IDE小姐可以提供陪吃、推拿、跳舞、刮痧、n推背等服务，编译器呢晚上进屋白天走人，文本编译器……类似于什么呢？充气娃娃？它们不能对比各有所长。Atom严格上来说属于文本编译器，本身不能断点测试，但加载插件后可以。还有，Atom想Chrorme一样任性，自动强制装在系统盘，其实之前忍了它……现在找到我的绝世好剑了，不能忍，Pycharm取而代之。Sublimetext，人气之高，自然也不错。</p>
+<p>&nbsp;</p>
+<p><strong>0x004 **</strong>本章小结**</p>
+<p>本章我们安装了Python环境，配置了环境变量，浅尝了编程，抓取了网页内容，并有进度条的下载到了本地。其实都是一些简单的事情。简单区分了一下编译器、文本编译器、IDE之间的区别。这个过程中我肯定有认识上和方法上不当的地方，欢迎大家批过来！预知后事如何，咱们下回分解！</p>
+<p>&nbsp;</p>
+<p>——————<img src="https://ws1.sinaimg.cn/large/640f21b1ly1fyzezww7h1j204r02zaa3.jpg" alt="enter description here"></p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/09/First/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/08/09/python2/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'true' == true ? true : false;
+        var verify = 'true' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: 'forsigner',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['forsigner'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
