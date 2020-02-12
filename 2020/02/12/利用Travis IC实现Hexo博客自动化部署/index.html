@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>利用Travis IC实现Hexo博客自动化部署 | g00gle&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Travis IC,Hexo,博客," />
+  
+
+  <meta name="description" content="1.Hexo博客的利与弊Hexo中文我就默认为看到这篇文章的人都比较了解Hexo博客，也都能够成功手动部署吧。所以第一部分推荐两篇文章一笔带过，让我们快速进入本文的重点内容。实在不知道也不要方先看一看下面推荐的这两篇文章。手把手教你使用Hexo + Github Pages搭建个人独立博客——令狐葱Hexo + github 打造个人博客——zdy0_2004还有一个专栏：Hexo / 总共13篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Travis IC实现Hexo博客自动化部署">
+<meta property="og:url" content="https://www.g00glehk.top/2020/02/12/利用Travis IC实现Hexo博客自动化部署/index.html">
+<meta property="og:site_name" content="g00gle's Blog">
+<meta property="og:description" content="1.Hexo博客的利与弊Hexo中文我就默认为看到这篇文章的人都比较了解Hexo博客，也都能够成功手动部署吧。所以第一部分推荐两篇文章一笔带过，让我们快速进入本文的重点内容。实在不知道也不要方先看一看下面推荐的这两篇文章。手把手教你使用Hexo + Github Pages搭建个人独立博客——令狐葱Hexo + github 打造个人博客——zdy0_2004还有一个专栏：Hexo / 总共13篇">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_21-46-02.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_21-49-04.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_22-12-08.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_22-15-12.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_20-51-17.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_20-52-01.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_23-26-15.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_23-31-48.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-08_23-07-21.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-11_23-27-13.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-11_23-28-01.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-11_23-25-37.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-05_23-26-48.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_21-44-09.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-05_23-29-26.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-05_23-27-41.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/1571317497800.jpg">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/_20191010193512.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/_20191010193521.jpg">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-10_19-26-16.png">
+<meta property="og:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-10_19-27-11.png">
+<meta property="og:updated_time" content="2020-02-12T03:21:44.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Travis IC实现Hexo博客自动化部署">
+<meta name="twitter:description" content="1.Hexo博客的利与弊Hexo中文我就默认为看到这篇文章的人都比较了解Hexo博客，也都能够成功手动部署吧。所以第一部分推荐两篇文章一笔带过，让我们快速进入本文的重点内容。实在不知道也不要方先看一看下面推荐的这两篇文章。手把手教你使用Hexo + Github Pages搭建个人独立博客——令狐葱Hexo + github 打造个人博客——zdy0_2004还有一个专栏：Hexo / 总共13篇">
+<meta name="twitter:image" content="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_21-46-02.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Hexo博客的利与弊"><span class="toc-text">1.Hexo博客的利与弊</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Travis-IC解决问题"><span class="toc-text">2.Travis IC解决问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1备份"><span class="toc-text">2.1备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2备份上传"><span class="toc-text">2.2备份上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3登录-Travis-CI-网站、"><span class="toc-text">2.3登录 Travis CI 网站、</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4Travis-CI基本配置"><span class="toc-text">2.4Travis CI基本配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5配置-travis-yml"><span class="toc-text">2.5配置.travis.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5测试"><span class="toc-text">2.5测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-经验总结"><span class="toc-text">3.经验总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1换电脑以后SSH-key重新申请"><span class="toc-text">3.1换电脑以后SSH key重新申请</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1生成新的-SSH-Key"><span class="toc-text">3.1.1生成新的 SSH Key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2在GitHub设置中添加key"><span class="toc-text">3.1.2在GitHub设置中添加key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3粘贴秘钥并保存"><span class="toc-text">3.1.3粘贴秘钥并保存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-4测试"><span class="toc-text">3.1.4测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2换电脑以后备份上传博客源文件"><span class="toc-text">3.2换电脑以后备份上传博客源文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3Travis-IC介绍"><span class="toc-text">3.3Travis IC介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-参考文章"><span class="toc-text">4.参考文章</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-利用Travis IC实现Hexo博客自动化部署" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">利用Travis IC实现Hexo博客自动化部署</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.02.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>g00gle</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="1-Hexo博客的利与弊"><a href="#1-Hexo博客的利与弊" class="headerlink" title="1.Hexo博客的利与弊"></a>1.Hexo博客的利与弊</h2><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo中文</a><br>我就默认为看到这篇文章的人都比较了解Hexo博客，也都能够成功手动部署吧。所以第一部分推荐两篇文章一笔带过，让我们快速进入本文的重点内容。实在不知道也不要方先看一看下面推荐的这两篇文章。<br><a href="https://linghucong.js.org/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="external">手把手教你使用Hexo + Github Pages搭建个人独立博客——令狐葱</a><br><a href="https://blog.csdn.net/zdy0_2004/article/details/78790037" target="_blank" rel="external">Hexo + github 打造个人博客——zdy0_2004</a><br>还有一个专栏：<br><a href="https://dp2px.com/categories/Hexo/" target="_blank" rel="external">Hexo / 总共13篇——水寒</a><br>感谢以上文章原创作者的分享，推荐纯属自来水。看完这两篇文章后有没有觉得自己手里的Hexo博客非常神奇、非常好用了呢？其实我想说，这个时候的Hexo只是一个残废好吗？你想一想，玩这个博客系统的你一定是热爱技术的折腾客，比如小明有8台电脑，他要在8台电脑上都安装环境，而且部署还真是个磨人的小妖精，很可能会出现奇奇怪怪的问题。比如在刚接触Hexo不久的时候我干过这样一件纯事，配置文件<code>_conffig.yml</code>中有这样一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">language: cn</div><div class="line">timezone: Asia/Shanghai</div></pre></td></tr></table></figure>
+<p>我就自作多情地把时区改成<code>Beijing</code>了，之后就出现了无法部署的问题。好久以后一个机会看到别人的文章才明白这个时区是改不得的，醉的是，出错以后新手真的很难知道错误原因。所以如果不能跨终端写作、自动部署，Hexo的博客功能算什么呢？算残废，没错！</p>
+<p>针对以上问题，我们今天就来交流一下利用Travis IC实现Hexo博客自动化部署，这样干的好处就是终于可以实现多终端发布博客文章而不用换一次电脑装一次环境了。</p>
+<h2 id="2-Travis-IC解决问题"><a href="#2-Travis-IC解决问题" class="headerlink" title="2.Travis IC解决问题"></a>2.Travis IC解决问题</h2><p>这里我们就暂时不介绍Travis IC了,感兴趣可以到文章后面了解一下，我们直接用它来解决问题。</p>
+<h3 id="2-1备份"><a href="#2-1备份" class="headerlink" title="2.1备份"></a>2.1备份</h3><p>Hexo博客源文件和Github Pages 仓库文件（生成的网站静态页文件）。若你更换了电脑，首先要把源文件拷贝到新电脑里，然后把GitHub Page的仓库clone到本地。<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_21-46-02.png" alt=""><br>最终本地要形成这样两个文件夹<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_21-49-04.png" alt=""></p>
+<h3 id="2-2备份上传"><a href="#2-2备份上传" class="headerlink" title="2.2备份上传"></a>2.2备份上传</h3><p>将备份的文件上传到GitHub。由于Github Pages 仓库使我们刚刚拷贝下来的，所以不用管它，重点是源文件。这个时候你就用两种选择：<br>第一种是常见的做法：在Github Pages 仓库直接新建分支，将源文件上传到分支当中。<br>第二种是本文要介绍到的方法：直接新建仓库，将源文件上传到新仓库当中。<br>其实这两种方法操作上可以说几乎完全一样，区别是<strong>方法二可以新建私有仓库，别人是看不到你的源文件的。</strong> </p>
+<p>先不要着急作出选择，选择方法二你要清楚，<strong>Travis CI 的网站有两个，travis-ci.org 专门针对开源项目，Github 上所有的公开仓库都能够免费使用；travis-ci.com 针对私有及商业项目，新用户前 100 次构建是免费的，后面就要收费了。</strong>  </p>
+<p>也就是说，如果你不是GitHub Pro，那么还是选择第一种方法或者第二种方法设置公开仓库，且要在travis-ci.org中操作。</p>
+<h3 id="2-3登录-Travis-CI-网站、"><a href="#2-3登录-Travis-CI-网站、" class="headerlink" title="2.3登录 Travis CI 网站、"></a>2.3登录 Travis CI 网站、</h3><p>访问<a href="https://travis-ci.org/" target="_blank" rel="external">travis-ci.org</a> 或者 <a href="https://travis-ci.com/" target="_blank" rel="external">travis-ci.com</a>“Sign up with Github”使用自己的 Github 帐号登录。接下来到github就可以 到Applications 中找到 Travis CI 。<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_22-12-08.png" alt=""><br>点击congigure,给它我们备份好源文件仓库的访问权限。<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-16_22-15-12.png" alt=""></p>
+<h3 id="2-4Travis-CI基本配置"><a href="#2-4Travis-CI基本配置" class="headerlink" title="2.4Travis CI基本配置"></a>2.4Travis CI基本配置</h3><p>为了能够实现代码推送到 Github，需要给 Travis CI Github 的 Persional access tokens，在 settings- Developer settings 可以生成一个。<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_20-51-17.png" alt=""><br>给repo权限即可<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_20-52-01.png" alt=""><br><strong>注意：生成的 token 只会显示一次，所以一定要及时保存下来，否则就只能删除重新创建了。</strong></p>
+<p>然后进入 Travis 中的项目设置界面，可以给具体的代码库进行设置，比如增加环境变量：在 Travis CI 中可以通过设置环境变量来传递一些不便于写在配置文件中的值（密码、密钥之类的），在这里我们设置 GH_TOKGH 环境变量分别用来传递 GitHub Personal Access Token 。<br><strong>注意：如果你在这里设置的环境变量名不是这两个，下文的.travis.yml配置的时候要与你的变量名对应。</strong></p>
+<p>最后还在 Travis 仓库配置界面more option–ssetting里面 环境变量Environment Variables进行配置token方便在构建文件中引用，NAME命名为GH_TOKGH，如下图<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_23-26-15.png" alt=""></p>
+<h3 id="2-5配置-travis-yml"><a href="#2-5配置-travis-yml" class="headerlink" title="2.5配置.travis.yml"></a>2.5配置.travis.yml</h3><p>在博客的源码文件分支下添加.travis,yml配置文件,决定怎么执行构建任务。<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_23-31-48.png" alt=""><br>下面是.travis,yml的内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">language: node_js</div><div class="line">node_js: stable</div><div class="line"></div><div class="line">cache:</div><div class="line">    apt: true</div><div class="line">    directories:</div><div class="line">        - node_modules</div><div class="line"></div><div class="line">notifications:</div><div class="line">    email:</div><div class="line">        recipients:</div><div class="line">            - xxx@gmail.com #你的邮箱地址</div><div class="line">        on_success: change</div><div class="line">        on_failure: always</div><div class="line"></div><div class="line"># turn off the clone of submodules for change the SSH to HTTPS in .gitmodules to avoid the error</div><div class="line">git:</div><div class="line">  submodules: false</div><div class="line">        </div><div class="line">before_install:</div><div class="line">    - export TZ=&apos;Asia/Shanghai&apos;</div><div class="line">    - npm install hexo-cli -g</div><div class="line"></div><div class="line">install:</div><div class="line">    - npm install</div><div class="line"></div><div class="line">script:</div><div class="line">    - hexo clean</div><div class="line">    - hexo g</div><div class="line"></div><div class="line">after_script:</div><div class="line">  - cd ./public</div><div class="line">  - git init</div><div class="line">  - git config user.name &quot;xxx&quot;</div><div class="line">  - git config user.email &quot;xxx@gmail.com&quot;</div><div class="line">  - git add .</div><div class="line">  - git commit -m &quot;Update blog content by Travis CI&quot;</div><div class="line">  - git push --force --quiet &quot;https://$&#123;GH_TOKEN&#125;@$&#123;GH_REF&#125;&quot; master:master</div><div class="line"></div><div class="line">branches:</div><div class="line">    only:</div><div class="line">        - master</div><div class="line"></div><div class="line">env:</div><div class="line">    global:</div><div class="line">        # Github Pages</div><div class="line">        - GH_REF: github.com/xxxr/xxx.github.io.git</div><div class="line">        # Coding Pages</div><div class="line">        - CD_REF: git.coding.net/xxxr/xxx.git</div></pre></td></tr></table></figure>
+<p>代码中另一个环境变量名GH_REF为 Github Pages 仓库地址<code>env</code>中有赋值。<br><strong>注意：xxx是你的GitHub用户名，xxx@gmail.com替换成你在GitHub的注册邮箱</strong></p>
+<h3 id="2-5测试"><a href="#2-5测试" class="headerlink" title="2.5测试"></a>2.5测试</h3><p>网上流传着一种很常见的.travis.yml配置代码，你可以轻松搜索到，很多人在用，但在我这里却行不通。通过push本地代码到GitHub等30多秒看Travis CI的反应，这个过程如果总是报错的话……那是真的爽啊！<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-08_23-07-21.png" alt=""></p>
+<p><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-11_23-27-13.png" alt=""></p>
+<p><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-11_23-28-01.png" alt=""><br>百折千回，慢慢尝试，也参考了不少大佬的代码最终在用上面的给出的代码成功<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-11_23-25-37.png" alt=""><br>18次！妥妥的18次，如果你也踩了坑，不要心急，请尝试修改、调整18次。</p>
+<h2 id="3-经验总结"><a href="#3-经验总结" class="headerlink" title="3.经验总结"></a>3.经验总结</h2><h3 id="3-1换电脑以后SSH-key重新申请"><a href="#3-1换电脑以后SSH-key重新申请" class="headerlink" title="3.1换电脑以后SSH key重新申请"></a>3.1换电脑以后SSH key重新申请</h3><h4 id="3-1-1生成新的-SSH-Key"><a href="#3-1-1生成新的-SSH-Key" class="headerlink" title="3.1.1生成新的 SSH Key"></a>3.1.1生成新的 SSH Key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;</div></pre></td></tr></table></figure>
+<p>如图所示：<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-05_23-26-48.png" alt=""></p>
+<p>然后要输入密码，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;</div><div class="line">Enter same passphrase again:&lt;再次输入加密串&gt;</div></pre></td></tr></table></figure>
+<p>秘钥生成以后在你的<code>C:\Users\你的用户名\.ssh</code>下可以看到如下文件<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-17_21-44-09.png" alt=""><br>然后你可以复制<code>id_rsa.pub</code>里的内容，或者在Git Bash里继续执行代码同样可以把秘钥复制到剪切板。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">clip &lt; ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
+<h4 id="3-1-2在GitHub设置中添加key"><a href="#3-1-2在GitHub设置中添加key" class="headerlink" title="3.1.2在GitHub设置中添加key"></a>3.1.2在GitHub设置中添加key</h4><p>登陆 GitHub 系统。点击右上角的 Account Settings—&gt;SSH Public keys —&gt; add another public keys<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-05_23-29-26.png" alt=""></p>
+<h4 id="3-1-3粘贴秘钥并保存"><a href="#3-1-3粘贴秘钥并保存" class="headerlink" title="3.1.3粘贴秘钥并保存"></a>3.1.3粘贴秘钥并保存</h4><p>把你本地生成的密钥复制到里面（ key 文本框中）， 点击 add key</p>
+<h4 id="3-1-4测试"><a href="#3-1-4测试" class="headerlink" title="3.1.4测试"></a>3.1.4测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@GitHub.com</div></pre></td></tr></table></figure>
+<p>出现下图所示提示，证明秘钥配置成功！<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-05_23-27-41.png" alt=""></p>
+<h3 id="3-2换电脑以后备份上传博客源文件"><a href="#3-2换电脑以后备份上传博客源文件" class="headerlink" title="3.2换电脑以后备份上传博客源文件"></a>3.2换电脑以后备份上传博客源文件</h3><p>在进行步骤<code>2.2备份上传</code>的时候，由于我是新换了电脑，能从仓库pull下来但无法push到仓库上去。<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/1571317497800.jpg" alt=""></p>
+<p><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/_20191010193512.png" alt=""></p>
+<p><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/_20191010193521.jpg" alt=""><br>原因是没有对Git文件或文件夹进行申明，还是对Git不熟悉造成的，其实挺有一意思，总结这三板斧的步骤就是，先<code>git init</code>初始化环境，然后选择要执行的文件范围，<code>git add .</code>意思是全部选择，然后申明，最后选择推拉。具体说明请看下图。<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-10_19-26-16.png" alt=""><br>push成功是这个样子的：、<br><img src="https://www.github.com/hucstar/img/raw/img/xiaoshujiang/Snipaste_2019-10-10_19-27-11.png" alt=""></p>
+<h3 id="3-3Travis-IC介绍"><a href="#3-3Travis-IC介绍" class="headerlink" title="3.3Travis IC介绍"></a>3.3Travis IC介绍</h3><p>Travis IC=Travis Continuous Integration 意思是，在一个项目中，任何人对代码库的任何改动，都会触发 CI 服务器自动对项目进行构建，自动运行测试，自动编译，甚至自动部署到测试环境。这样做的好处就是，随时发现问题，随时修复。因为修复问题的成本随着时间的推移而增长，越早发现，修复成本越低。Travis CI 是在线托管的 CI 服务，用 Travis 来进行持续集成，不需要自己搭服务器。另外，GitHub推出了官方的自动编译项目——<strong>GitHub Actions</strong>，详情请参考下面这两篇文章了解：<br><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="external">GitHub Actions 入门教程——阮一峰</a><br><a href="https://zhuanlan.zhihu.com/p/47328730" target="_blank" rel="external">Github Actions：再次改变软件开发——编译青春</a></p>
+<h2 id="4-参考文章"><a href="#4-参考文章" class="headerlink" title="4.参考文章"></a>4.参考文章</h2><p><a href="https://michael728.github.io/2019/06/16/cicd-hexo-blog-travis/" target="_blank" rel="external">Github 使用 Travis CI 实现 Hexo 博客自动部署——Michael翔</a><br><a href="https://xirikm.net/2019/826-2.html" target="_blank" rel="external">使用 Travis CI 实现 Hexo 博客自动部署——昔日的夕日</a>（这篇文章部分地方有错误，要自行辨别）。<br><a href="https://segmentfault.com/a/1190000013286548" target="_blank" rel="external">利用CI自动部署hexo博客——一步</a><br><a href="https://www.cnblogs.com/Akkuman/p/9607513.html" target="_blank" rel="external">使用Travis CI自动部署博客到github pages和coding pages——Akkuman</a><br>好的，到这里我们这篇交流文章就结束了。菜鸟的学习文章，不足之处还望各位大神斧正。</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持g00gle</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>BTC扫一扫</span>
+            
+            <img src="/images/btc.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>ETH扫一扫</span>
+            
+            <img src="/images/eth.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/02/12/小菜鸡deepin系统手动更新火狐浏览器/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/02/12/一千年以前的故事/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'true' == true ? true : false;
+        var verify = 'true' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JLQHAUwCL3likPqP0YfYTMUX-gzGzoHsz",
+            appKey: "ThhSbe6dLVmQfuecLoXgOV3q",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
